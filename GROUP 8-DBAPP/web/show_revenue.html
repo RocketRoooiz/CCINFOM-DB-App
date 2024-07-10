@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Annual Revenue Report</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            // JavaScript function to validate the year and month
+            function validateYear() {
+                var yearInput = document.getElementById("yearrevinput").value;
+
+                // Check if the year is positive
+                if (isNaN(yearInput) || yearInput <= 0) {
+                    alert("Please enter a valid positive year.");
+                    return false; // Prevent form submission
+                }
+
+                // Get the current date
+                var currentDate = new Date();
+                var currentYear = currentDate.getFullYear();
+
+                // Check if the year is greater than the current year
+                if (yearInput > currentYear) {
+                    alert("Please enter a year up to the current date.");
+                    return false; // Prevent form submission
+                }
+
+                return true; // Allow form submission
+            }
+        </script>
+    
+    </head>
+    <body>
+        <form action="show_monthly_item_sales.jsp" onsubmit="return validateYear();">
+
+        <!-- Textbox for year -->
+        <label for="year">Enter Year:</label>
+        <input type="text" id="yearrevinput" name="yearrevinput" required>
+        <br>
+
+        <!-- Submit button -->
+        <input type="submit" value="Generate Report">
+    </form>
+    </body>
+</html>

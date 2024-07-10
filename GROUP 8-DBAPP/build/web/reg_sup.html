@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Supplier Registration</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script>
+            function validateForm() {
+                var supplierName = document.getElementById("supplier_name").value;
+                var email = document.getElementById("email").value;
+                var contactNo = document.getElementById("contact_no").value;
+
+                var proceed = true;
+
+                // Validate supplier name, email, and contact number
+                if (supplierName.trim().length === 0) {
+                    alert("Please enter supplier name.");
+                    proceed = false;
+                }
+
+                if (email.trim().length === 0) {
+                    alert("Please enter email.");
+                    proceed = false;
+                }
+
+                if (contactNo.trim().length === 0) {
+                    alert("Please enter contact number.");
+                    proceed = false;
+                } else {
+                    // Validate if contact number is a valid positive integer
+                    try {
+                        var conNum = parseInt(contactNo);
+                        if (conNum < 0 || isNaN(conNum)) {
+                            alert("Please enter a valid contact number.");
+                            proceed = false;
+                        }
+                    } catch (e) {
+                        // handle the case where contactNo has non-numeric characters
+                        alert("Please enter a valid numeric contact number.");
+                        proceed = false;
+                    }
+                }
+
+                return proceed;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Supplier Registration Menu</h1>
+        
+        <form action="sup_processing.jsp" method="post" onsubmit="return validateForm();">
+            Enter supplier name:<input type="text" id="supplier_name" name="supplier_name"><br>
+            <br>
+            Enter email:<input type="text" id="email" name="email"><br>
+            <br>
+            Enter contact number:<input type="text" id="contact_no" name="contact_no"><br>
+            <br>
+            
+            Delivery Schedule:<br>
+            <input type="checkbox" id="mon" name="day" value="Monday">Monday<br>
+            <input type="checkbox" id="tue" name="day" value="Tuesday">Tuesday<br>
+            <input type="checkbox" id="wed" name="day" value="Wednesday">Wednesday<br>
+            <input type="checkbox" id="thu" name="day" value="Thursday">Thursday<br>
+            <input type="checkbox" id="fri" name="day" value="Friday">Friday<br>
+            <input type="checkbox" id="sat" name="day" value="Saturday">Saturday<br>
+            <input type="checkbox" id="sun" name="day" value="Sunday">Sunday<br>
+            <br>
+
+            <input type="submit" value="Register Supplier">
+        </form>
+    </body>
+</html>

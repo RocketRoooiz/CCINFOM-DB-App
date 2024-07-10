@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Product Registration</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script>
+            function validateForm() {
+                var prodName = document.getElementById("prod_name").value;
+                var prodPrice = document.getElementById("prod_price").value;
+
+                var proceed = true;
+
+                // Validate product name and price
+                if (prodName.trim().length === 0) {
+                    alert("Please enter product name.");
+                    proceed = false;
+                }
+
+                if (prodPrice.trim().length === 0) {
+                    alert("Please enter product price.");
+                    proceed = false;
+                } else {
+                    // Validate if price is a valid positive number
+                    try {
+                        var price = parseFloat(prodPrice);
+                        if (price < 0 || isNaN(price)) {
+                            alert("Please enter a valid positive numeric price.");
+                            proceed = false;
+                        }
+                    } catch (e) {
+                        // handle the case where prodPrice has non-numeric characters
+                        alert("Please enter a valid numeric price.");
+                        proceed = false;
+                    }
+                }
+
+                return proceed;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Product Registration Menu</h1>
+        
+        <form action="prod_processing.jsp" onsubmit="return validateForm();">
+            Enter product name:<input type="text" id="prod_name" name="prod_name"><br>
+            <br>
+
+            Enter price:<input type="text" id="prod_price" name="prod_price"><br>
+            <br>
+
+            Availability:
+            <input type="checkbox" id="t1" name="term" value="Term 1">Term 1
+            <input type="checkbox" id="t2" name="term" value="Term 2">Term 2
+            <input type="checkbox" id="t3" name="term" value="Term 3">Term 3<br>
+            <br>
+            
+            <input type="submit" value="Register Product">
+        </form>
+    </body>
+</html>
